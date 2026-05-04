@@ -1,0 +1,132 @@
+{
+  "name": "windsurf-status",
+  "displayName": "Windsurf Status",
+  "description": "Display your current coding activity and file information in the status bar. Shows what you're working on, which files are open, and your current workspace context.",
+  "icon": "src/logo.png",
+  "version": "1.2.0",
+  "publisher": "agent-nau",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/agent-nau/windsurf-discord-rpc"
+  },
+  "files": [
+    "out/**/*",
+    "LICENSE",
+    "package.json",
+    "src/logo.png"
+  ],
+  "engines": {
+    "vscode": "^1.74.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "keywords": [
+    "windsurf",
+    "status",
+    "activity",
+    "coding"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "configuration": {
+      "title": "Windsurf Status",
+      "properties": {
+        "windsurfStatus.enabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable Discord Rich Presence"
+        },
+        "windsurfStatus.clientId": {
+          "type": "string",
+          "default": "",
+          "description": ""
+        },
+        "windsurfStatus.showFileName": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show current file name in presence"
+        },
+        "windsurfStatus.showWorkspace": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show workspace name in presence"
+        },
+        "windsurfStatus.showLanguage": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show programming language icon"
+        },
+        "windsurfStatus.showLineCount": {
+          "type": "boolean",
+          "default": false,
+          "description": "Show line count in presence"
+        },
+        "windsurfStatus.idleTimeout": {
+          "type": "number",
+          "default": 300,
+          "minimum": 0,
+          "maximum": 3600,
+          "description": "Seconds of inactivity before showing idle status (0 to disable)"
+        },
+        "windsurfStatus.resetOnIdle": {
+          "type": "boolean",
+          "default": true,
+          "description": "Reset presence when idle"
+        },
+        "windsurfStatus.detailsTemplate": {
+          "type": "string",
+          "default": "Editing {{file}}",
+          "description": "Template for the top line. Variables: {{file}}, {{workspace}}, {{lang}}, {{lines}}"
+        },
+        "windsurfStatus.stateTemplate": {
+          "type": "string",
+          "default": "{{workspace}}",
+          "description": "Template for the bottom line. Variables: {{file}}, {{workspace}}, {{lang}}, {{lines}}"
+        }
+      }
+    },
+    "commands": [
+      {
+        "command": "windsurfStatus.enable",
+        "title": "Enable Discord RPC",
+        "category": "Windsurf Status"
+      },
+      {
+        "command": "windsurfStatus.disable",
+        "title": "Disable Discord RPC",
+        "category": "Windsurf Status"
+      },
+      {
+        "command": "windsurfStatus.restart",
+        "title": "Restart Discord RPC",
+        "category": "Windsurf Status"
+      },
+      {
+        "command": "windsurfStatus.showCurrentStatus",
+        "title": "Show Current Status",
+        "category": "Windsurf Status"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "lint": "eslint src --ext ts",
+    "package": "vsce package"
+  },
+  "dependencies": {
+    "discord-rpc": "^4.0.1"
+  },
+  "devDependencies": {
+    "@types/discord-rpc": "^4.0.10",
+    "@types/node": "^18.19.0",
+    "@types/vscode": "^1.74.0",
+    "typescript": "^5.3.0"
+  }
+}
